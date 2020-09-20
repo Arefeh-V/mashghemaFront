@@ -1,0 +1,132 @@
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>السابقون-مشق ما</title>
+    <meta name="description" content='گروه جهادی السابقون-فعالیت های آموزشی در مناطق کمتر توسعه یافته'>
+    <meta name="keywords" content="بازمانده از تحصیل, آموزش, سیستان و بلوچستان, گروه جهادی" />
+
+
+    <!--<meta name="author" content=""> -->
+
+    <link href="../Css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../Css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../Css/styles/index.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../Js/DataTables/css/jquery.dataTables.min.css"/>
+
+    <script src="../Js/mdb.js" type="text/javascript"></script>
+    <script src="../Js/mdb.min.js" type="text/javascript"></script>
+    <script src="../Js/popper.js" type="text/javascript"></script>
+    <script src="../Js/popper.min.js" type="text/javascript"></script>
+
+    <script src="../Js/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="../Js/jquery-3.3.1.js" type="text/javascript"></script>
+    <script src="../Js/bootstrap.js" type="text/javascript"></script>
+    <script src="../Js/bootstrap.min.js" type="text/javascript"></script>
+    
+    
+<style>
+    
+    </style>
+</head>
+
+
+<body class="front">
+
+    <!-- scrollToTop -->
+    <!-- ================ -->
+    <div class="scrollToTop"><i class="icon-up-open-big"></i></div>
+
+    <!-- page wrapper start -->
+    <!-- ================ -->
+
+    <div class="page-wrapper">
+       
+        <header class="header fixed clearfix">
+            
+            <div class="container p-0 text-right">
+                <div class="row">
+
+                    <div class="col-md-12">
+
+                        <!-- header-right start -->
+                        <!-- ================ -->
+                        <div class="header-right clearfix">
+
+                            <!-- main-navigation start -->
+                            <!-- ================ -->
+                            <div class="main-navigation animated pull-right col-12" style="background-color: darkblue; color: white !important
+                                                                                           ; ">
+                                <h1 style="color: white">مشق ما</h1>
+                                <p>پروژه بازمندگان از تحصیل - با حمایت گروه جهادی السابقون </p>
+                                
+                            </div>
+                            <!-- main-navigation end -->
+
+                        </div>
+                        <!-- header-right end -->
+
+                    </div>
+
+                </div>
+            </div>
+            
+        </header>
+
+
+        
+
+    </div>
+    <!-- page-wrapper end -->
+
+<div class="container p-0" >
+    
+    <div class="col-md-4 col-sm-6 col-xs-12 m-auto posiposition-relative text-center" style="top: 100px; border: 2px solid darkblue; border-radius: 5px; padding: 50px" >
+        <h3>ورود به پنل کاربری</h3>
+        <br>
+        <form action="http://vps.name.ng:3312/login" method="post" id="loginForm">
+            
+            <input type="text" name="email" placeholder="نام کاربری" required class="form-control" >
+            <br>
+            <input type="password" name="password" placeholder="رمز عبور" required class="form-control">
+            <br>
+            <input type="submit" value="ورود" class="btn btn-primary">
+            
+        </form>
+    </div>
+</div>
+</body>
+    
+    <script>
+    $(document).ready(function () {
+    $("#loginForm").submit(function(event){
+        
+        //event.preventDefault(); //prevent default action 
+        var post_url = $(this).attr("action"); //get form action url
+        var request_method = $(this).attr("method"); //get form GET/POST method
+        var form_data = $(this).serialize(); //Encode form elements for submission
+        $.ajax({
+            url : post_url,
+            type: request_method,
+            data : form_data,
+            success: function(response){
+                debugger;
+            localStorage.setItem('token', response.token);
+            
+            window.location.href = 'students.html';
+        }
+        });
+ //              .done(function(response){
+//            localStorage.setItem('token', response.token);
+//            
+//            window.location.href = 'students.html';
+//        });
+        
+    });
+        });
+        
+    </script>
+    
+</html>

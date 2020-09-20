@@ -1,0 +1,38 @@
+
+@font-face {
+  font-family: 'yekan';
+  src: url('../../fonts/yekan.eot') format('eot'),  /* IE6?8 */
+       url('../../fonts/yekan.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+       url('../../fonts/yekan.ttf') format('truetype');  /* Saf3?5, Chrome4+, FF3.5, Opera 10+ */
+}
+@font-face {
+  font-family: 'yekannumbers';
+  src: url('../../fonts/yekannumbers-regular.eot') format('eot'),  /* IE6?8 */
+       url('../../fonts/yekannumbers-regular.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+       url('../../fonts/yekannumbers-regular.ttf') format('truetype');  /* Saf3?5, Chrome4+, FF3.5, Opera 10+ */
+}
+@font-face {
+  font-family: 'BKoodak';
+  src: url('../../fonts/BKoodakBold.eot') format('eot'),  /* IE6?8 */
+       url('../../fonts/BKoodakBold.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+       url('../../fonts/BKoodakBold.ttf') format('truetype');  /* Saf3?5, Chrome4+, FF3.5, Opera 10+ */
+}
+/*.bg {
+      background-image: url("/Images/bg1.jpg");
+      height: 100%; 
+      width: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }*/
+    .container {
+        max-width: 100%;
+    }
+    input{
+        text-align: right;
+    }
+body{
+    text-align: right !important;
+    font-size: 16px !important;
+    font-family:"yekan",yekannumbers;
+}

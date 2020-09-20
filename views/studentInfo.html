@@ -1,0 +1,206 @@
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>السابقون-مشق ما</title>
+    <meta name="description" content='گروه جهادی السابقون-فعالیت های آموزشی در مناطق کمتر توسعه یافته'>
+    <meta name="keywords" content="بازمانده از تحصیل, آموزش, سیستان و بلوچستان, گروه جهادی" />
+
+
+    <!--<meta name="author" content=""> -->
+
+    <link href="../Css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../Css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../Css/styles/index.css" rel="stylesheet" type="text/css" />
+    <link href="../Css/styles/studentInfo.css" rel="stylesheet" type="text/css" />
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+
+    <script src="../Js/mdb.js" type="text/javascript"></script>
+    <script src="../Js/mdb.min.js" type="text/javascript"></script>
+    <script src="../Js/popper.js" type="text/javascript"></script>
+    <script src="../Js/popper.min.js" type="text/javascript"></script>
+
+    <script src="../Js/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="../Js/jquery-3.3.1.js" type="text/javascript"></script>
+    <script src="../Js/bootstrap.js" type="text/javascript"></script>
+    <script src="../Js/bootstrap.min.js" type="text/javascript"></script>
+    
+    <script src="../Js/DataTables/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        
+<style>
+    #dtBasicExample_wrapper{
+        overflow: auto;
+    }
+    
+</style>
+</head>
+
+
+<body class="container">
+
+    <!-- scrollToTop -->
+    <!-- ================ -->
+    <div class="scrollToTop"><i class="icon-up-open-big"></i></div>
+
+    <!-- page wrapper start -->
+    <!-- ================ -->
+
+    <div class="page-wrapper ">
+       
+        <header class="header fixed clearfix animated object-visible fadeInDown">
+            
+            <div class="container p-0 text-right ">
+                <div class="row">
+
+                    <div class="col-md-12 p-0">
+
+                        <!-- header-right start -->
+                        <!-- ================ -->
+                        <div class="header-right clearfix">
+
+                            <!-- main-navigation start -->
+                            <!-- ================ -->
+                            <div class="pull-right col-12" style="background-color: darkblue; color: white !important
+                                                                                           ; ">
+                                <h1 style="color: white">مشق ما</h1>
+                                <p>پروژه بازماندگان از تحصیل - با حمایت گروه جهادی السابقون </p>
+                                
+                            </div>
+                            <!-- main-navigation end -->
+
+                        </div>
+                        <!-- header-right end -->
+
+                    </div>
+
+                </div>
+            </div>
+            
+        </header>
+
+
+        
+
+    </div>
+    <!-- page-wrapper end -->
+
+    <div  class="container" dir="rtl">
+        <div id="user-profile-2" class="user-profile">
+            <div class="tabbable">
+
+                <div class="tab-content no-border padding-24">
+
+                    <div id="home" class="tab-pane in active">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-3 center">
+                                <span class="">
+                                    <img class="editable img-responsive" alt="Avatar" id="avatar" src="" style="max-width: 100%">
+                                </span>
+
+                                <div class="space space-4"></div>
+
+                                    <div class="col-md-12 col-sm-12 col-xs-12 m-t-5">
+                                        <span><a class="btn btn-primary text-center" style="font-size: 14px; margin-top: 50px" id="location" href="" target="_blank">مشاهده آدرس روی نقشه</a></span>
+                                </div>
+                            </div><!-- /.img -->
+
+                            <div id="studentInfo" class="col-xs-12 col-sm-9">
+                                
+                                <h2>اطلاعات دانش آموز </h2>
+
+                                <div class="profile-user-info"> </div>
+
+                                <div class="hr hr-8 dotted"></div>
+
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+
+                        <div class="space-20"></div>
+
+                    
+                    </div><!-- /#home -->
+
+                </div>
+            </div>
+	   </div>
+    </div>
+
+</body>
+    
+<script>
+    $(document).ready(function () {
+        if(localStorage["token"] === undefined){
+           window.location.href = 'login.html';    
+
+           }
+        var studentID = localStorage["studentID"];
+        setInfo(studentID);
+
+    });
+    
+    function setInfo(studentID){
+        const url = 'http://vps.name.ng:3312/students/'+studentID;
+        $.ajax({
+            url: url,
+            dataType: 'json',
+            type: 'GET',
+            headers: {"Authorization": localStorage.getItem('token')},
+            error : function(err) {
+                alert('مشکلی پیش آمده است. لطفا دوباره تلاش کنید', err)
+                window.location.href = 'students.html';    
+                
+            },
+            success: function(data){
+                $("#profile-user-info").empty();
+
+                var key = ["نام", "نام خانوادگی", "کدملی" , "جنسیت" , "نام مدرسه" , "مقطع تحصیلی" , "سال ترک تحصیل" , "علت ترک تحصیل" ,"استان" , "شهر" , "آدرس" , "کدپستی" , "شماره تلفن منزل", "نام و نام خانوادگی پدر" , "تحصیلات پدر" , "آیا پدر سرپرست است؟" , "نام و نام خانوادگی مادر" , "شماره تماس مادر یا یکی از اعضای خانواده" , "تحصیلات مادر" , "کدملی مادر" , "نام و نام خانوادگی سرپرست" , "شغل سرپرست" , "شماره موبایل سرپرست" , "درامد ماهیانه سرپرست (تومان)" , "شماره کارت سرپرست" , "آیا در حال حاضر مدرسه می رود" , "ترک تحصیل کرده است" , "بازمانده از تحصیل است" , "آیا دانش آموز کار میکند" , "از اتباع است", "کودک کار میکند" , "کودک ازدواج کرده است"  , "عدم امکان پرداخت شهریه مدرسه (فقر مالی)"  , "راه دور/ناامن/پرهزینه برای دانش آموز" , "نبود مدرسه" , "نبود معلم"  , "چون در مدرسه دینی درس میخواند" ,"چون دختر است" , "کودک به گفته والدین آموزش پذیر نیست" , "کودک تمایل ندارد"  , "چون درس فایده ندارد" , "سهل انگاری والدین" , "معلولیت کودک" , "جسمی-حرکتی" , "ذهنی شدید" , "ذهنی آموزش پذیر" , "جسمی – ذهنی" , "نابینا" , "ناشنوا" , "موارد خاص (بیش فعالی – اختلال یادگیری – اوتیسم و ...)" , "بیماری کودک" , "فقدان شناسنامه" , "مهاجرت داخل کشور" , "مهاجرت خارج کشور","مشکلات خانوادگی" , "نوع کار کودک","توضیحات تکمیلی" , "نام کاربری تسهیلگر" , "تاریخ تکمیل فرم" ]    
+                
+                var value = [data.name, data.fname, data.nationalId , data.isGirl , data.schoolName , data.grade , data.leavingYear , data.leavingReason , data.province , data.city , data.address , data.postalCode , data.homePhoneNo, data.fatherName , data.fatherEducation , data.isFatherSupervisor , data.motherName ,data.momOrRelativePhoneNo , data.motherEducation , data.motherId , data.supervisorName , data.supervisorJob ,  data.supervisorMobileNo , data.supervisorIncome , data.supervisorCardNo , data.isStudent , data.hasLeft , data.neverWent , data.isWorking , data.isRForeigner, data.isRWorker , data.isRMarried  , data.isRPoverty  , data.isRSafety , data.isRNoSchool , data.isRNoTeacher  , data.isRReligious ,data.isRGirl , data.isRNotLearning , data.isRNotWanting  , data.isRNoUse, data.isRBadParents , data.isRDisability, data.isPhysical , data.isMentalHarsh , data.mentalLearn , data.mentalPhysical , data.blind , data.deaf , data.otherDisabilities , data.isRSickness , data.isRNoId , data.isRLocationInside , data.isRLocationOut,data.isRFamily , data.workType, data.details , data.userId ,data.formCompletionDate ]
+                
+                $('#avatar').attr("src","http://app.sabequn.org/"+data._id+".jpg");
+                $('#location').attr("href","https://www.openstreetmap.org/?mlat=" +data.latitude+ "&mlon=" +data.longitude+ "#map=9/" +data.latitude+"/" + data.longitude );
+
+                var i;
+                for(i =0; i<value.length; i++){
+                    debugger;
+                    if (value[i] === true){
+                        if (i == 3){
+                            value[i] = "دختر";
+                        }
+                        else{
+                            value[i] = "بله";
+                        }
+                    }
+                    else if (value[i] === false){
+                        if (i == 3){
+                            value[i] = "پسر";
+                        }
+                        else{
+                            value[i] = "خیر";
+                        }                    
+                    }
+                    else if (value[i] === undefined ){
+                        value[i] = "";
+
+                    }
+                    
+                }
+                    
+                    for(i =0; i<key.length; i++){
+                    
+                    $('.profile-user-info').append('<div class="profile-info-row"s><div class="profile-info-name">  '+key[i]+'  </div><div class="profile-info-value"><span>  '+value[i]+'  </span></div></div>');
+                    }
+               
+               
+            }
+        });
+    }
+   
+</script>
+    
+    
+    
+</html>
